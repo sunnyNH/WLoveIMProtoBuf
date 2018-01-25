@@ -1,0 +1,29 @@
+syntax="proto3";
+package IM.Login;
+import "IM.BaseDefine.proto";
+option optimize_for = LITE_RUNTIME;
+
+//service id:	0x0001
+
+message IMLoginReq{
+	//cmd id:		0x0103
+	IM.BaseDefine.ClientType client_type = 1;
+	string client_version = 2;
+	string device_token = 3;
+  string access_token = 4;
+}
+
+message IMLoginRes {
+	//cmd id:		0x0104
+	uint32 server_time = 1;
+	IM.BaseDefine.ResultType err_code = 2;
+	string err_msg = 3;
+}
+message IMLogoutReq{
+	//cmd id:		0x0105
+}
+
+message IMLogoutRsp{
+	//cmd id:		0x0106
+	uint32 err_code = 1;
+}

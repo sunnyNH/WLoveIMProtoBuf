@@ -1,0 +1,61 @@
+syntax="proto3";
+package IM.BaseDefine;
+option optimize_for = LITE_RUNTIME;
+
+// service id
+enum ServiceID{
+    SID_UNUSED          = 0x0000;
+    SID_LOGIN           = 0x0001;           // for login
+    SID_MSG             = 0x0003;           // for IM
+    SID_GAME            = 0x0004;           // for GAME
+    SID_AUDIO           = 0x0005;           // for 语音
+    SID_OTHER           = 0x0101;           // for 其他
+}
+
+// command
+enum LoginCmdID{
+    CID_LOGIN_UNUSED                  = 0x0000;
+    CID_LOGIN_REQ_USERLOGIN           = 0x0103;	// 登陆
+    CID_LOGIN_RES_USERLOGIN           = 0x0104;	//
+    CID_LOGIN_REQ_USERLOGOUT          = 0x0105;	// 登出
+    CID_LOGIN_RES_USERLOGOUT          = 0x0106; 	//
+}
+
+//command
+enum MessageCmdID{
+    CID_MSG_UNUSED                   = 0x0000;
+    CID_MSG_DATA					           = 0x0301;	//
+    CID_MSG_DATA_ACK				         = 0x0302; 	//
+}
+
+//command
+enum GameCmdID{
+    CID_GOBANG_UNUSED               = 0x0000;
+    CID_GOBANG_DATA                 = 0x0001; //五子棋
+    CID_GOBANG_ACK                  = 0x0002; //五子棋
+}
+//command
+enum AudioCmdID{
+    CID_AUDIO_UNUSED               = 0x0000;
+    CID_AUDIO_DATA                 = 0x0001; //语音
+    CID_AUDIO_ACK                  = 0x0002; //语音
+}
+enum OtherCmdID{
+    CID_OTHER_UNUSED                        = 0x0000;
+    CID_OTHER_HEARTBEAT                     = 0x0701;
+    CID_OTHER_STOP_RECV_PACKET              = 0x0702;
+}
+
+enum ResultType {
+	Ok				    = 0;
+	REFUSED		    = 1;
+}
+
+enum ClientType{
+    CLIENT_TYPE_UNKNOWN     = 0x00;
+    CLIENT_TYPE_ANDROID     = 0x01;
+    CLIENT_TYPE_IOS         = 0X02;
+	  CLIENT_TYPE_WINDOWS     = 0x03;
+    CLIENT_TYPE_MAC         = 0x04;
+    CLIENT_TYPE_WEBIM       = 0x05;
+}

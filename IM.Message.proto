@@ -1,0 +1,31 @@
+syntax="proto3";
+package IM.Message;
+option optimize_for = LITE_RUNTIME;
+
+//service id  0x0003
+message IMMsgData{
+	//cmd id:		0x0301
+	string type = 1;    // 消息大类型 message,通知
+  string subtype = 2; // 消息子类型  m_txt,m_image,m_audio,m_video,m_location等
+	string from = 3;	// 消息发送方
+	string to = 4;		// 消息接受方,个人的id，或者群组的id
+	string msg_id = 5;  // 服务端维护
+	string msg_data = 6; // 消息数据，json格式
+	uint32 create_time = 7; // 服务端时间戳
+}
+
+message IMMsgDataAck{
+	//cmd id:		0x0302
+	string err_code = 1;	// 0:发送成功，msg_id有效；1+：发送失败，错误消息参考err_msg, msg_id无效
+	string err_msg = 2;     // 错误消息
+	string msg_id = 3;      // 发送成功后server会改写为实际的消息ID
+	string create_time = 4; // 消息对应服务器时间戳
+}
+
+message IMGroupChange{
+  string uid = 1;
+  string change_type = 2;
+  string gid = 3;
+  repeated string cur_uid_list = 4;      //现有的成员id
+  repeated string chg_uid_list = 5;      //add: 表示添加成功的id,   del: 表示删除的id
+}
